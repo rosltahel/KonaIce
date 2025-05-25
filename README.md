@@ -1,5 +1,6 @@
 # Kona Ice Tracker 🚚🍧
 
+![Kona Ice Truck](./kona.png)
 Welcome to the **Kona Ice Tracker** – a fun, interactive map project that tracks the Kona Ice truck! This project is built using **Leaflet.js**, **HTML**, **CSS**, and **JavaScript**, and features a custom Kona Ice truck icon to create a playful experience for users.
 
 > ⚠️ _This project is currently in development. Some features may be incomplete or not fully functional yet._
