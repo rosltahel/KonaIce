@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kona Ice Tracker Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 90vh; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2>📍 Live Kona Ice Truck Location</h2>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Load latest location from admin sheet
+    fetch("https://api.sheetbest.com/sheets/9fa4b131-6e2a-4561-9d58-1d02c09af17e")
+      .then(res => res.json())
+      .then(data => {
+        if (!data.length) {
+          alert("❌ No location data found.");
+          return;
+        }
+
+        const latest = data[data.length - 1];
+        const lat = parseFloat(latest.Latitude);
+        const lng = parseFloat(latest.Longitude);
+
+        if (isNaN(lat) || isNaN(lng)) {
+          alert("❌ Location data is invalid.");
+          return;
+        }
+
+        const map = L.map('map').setView([lat, lng], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        //http://127.0.0.1:5500/kona.png
+
+        const truckIcon = L.icon({
+          iconUrl: 'http://127.0.0.1:5500/kona.png',
+          iconSize: [50, 50],
+          iconAnchor: [25, 50],
+          popupAnchor: [0, -50]
+        });
+
+        L.marker([lat, lng], { icon: truckIcon })
+          .addTo(map)
+          .bindPopup("🚚 Kona Ice Truck is here!")
+          .openPopup();
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        alert("❌ Error loading map data.");
+      });
+  </script>
+</body>
+</html>

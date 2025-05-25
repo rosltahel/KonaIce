@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kona Ice Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="location-card">
+    <div class="location-container">
+      <img src="image.png" alt="Kona Ice Truck" class="location-image" />
+
+      <div class="location-content">
+        <h2>Track the Kona Ice Truck!</h2>
+        <p>Want to get alerted when Kona Ice is near you? Enter your info below and start tracking.</p>
+
+        <form id="alertForm">
+          <input type="text" id="zip" placeholder="Enter ZIP Code" required />
+          <input type="email" id="email" placeholder="Enter Email" required />
+          <button type="submit" class="location-button">Track & Alert Me</button>
+        </form>
+
+        <div id="message" class="message"></div>
+
+        <!-- Admin Button -->
+        <a href="admin.html" class="admin-button">🚚 Admin: I'm Here Now</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
